@@ -1,0 +1,43 @@
+---
+- hosts: azure_vm
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Install MySQL
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Install PHP and required extensions
+      apt:
+        name:
+          - php
+          - libapache2-mod-php
+          - php-mysql
+        state: present
+
+    - name: Enable Apache to run on boot and restart the service
+      systemd:
+        name: apache2
+        enabled: yes
+        state: restarted
+
+    - name: Create a PHP Info page
+      copy:
+        dest: /var/www/html/info.php
+        content: "<?php phpinfo(); ?>"
+        mode: '0644'
+
+    - name: Open firewall for HTTP and HTTPS
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - '80'
+        - '443'
