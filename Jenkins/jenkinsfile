@@ -32,7 +32,7 @@ pipeline {
         }
 
         stage('Terraform refresh') {
-            step {
+            steps {
                 script {
                     sh 'terraform refresh'
                 }
