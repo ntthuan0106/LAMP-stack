@@ -1,0 +1,6 @@
+mysql_root_password: "secure-password"
+app_user: "www-data"
+http_host: "lamp.example.com"
+http_conf: "lamp.example.conf"
+http_port: "80"
+disable_default: true
