@@ -1,2 +1,2 @@
 [azure_vm]
-23.99.122.197 ansible_user=thuan ansible_ssh_private_key_file=~/.ssh/new_thuan
+{public_ip} ansible_user={admin_username} ansible_ssh_private_key_file=~/.ssh/new_thuan
