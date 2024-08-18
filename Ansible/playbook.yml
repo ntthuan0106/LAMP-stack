@@ -11,7 +11,8 @@
   #Apache Configuration
     - name: Install LAMP Packages
       apt: name={{ item }} update_cache=yes state=latest
-      loop: [ 'apache2', 'mariadb-server', 'python3-pymysql','php', 'mysql-python', 'libapache2-mod-php' ]
+      loop: [ 'apache2', 'mariadb-server', 'python3-pymysql','php', 'python3-mysql.connector', 'libapache2-mod-php' ]
+
 
     - name: Create document root
       file:
@@ -41,7 +42,7 @@
         name: root
         password: "{{ mysql_root_password }}"
         login_user: root
-        login_password: ""
+        login_password: "{{ mysql_root_password }}"
         login_unix_socket: /var/run/mysqld/mysqld.sock
 
     - name: Removes all anonymous user accounts
