@@ -14,3 +14,7 @@ variable "network_interface_name" {
 variable "VM-name" {
     type = string
 }
+variable "admin_username" {
+  type = string
+  default = "thuan"
+}
