@@ -1,20 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        AZURE_SUBSCRIPTION_ID = credentials('azure-subscription-id')
-        AZURE_CLIENT_ID = credentials('azure-client-id')
-        AZURE_CLIENT_SECRET = credentials('azure-client-secret')
-        AZURE_TENANT_ID = credentials('azure-tenant-id')
-    }
-
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://your-repo-url.git'
-            }
-        }
-
         stage('Terraform Init') {
             steps {
                 script {
@@ -22,7 +9,6 @@ pipeline {
                 }
             }
         }
-
         stage('Terraform Apply') {
             steps {
                 script {
@@ -30,27 +16,17 @@ pipeline {
                 }
             }
         }
-
-        stage('Terraform refresh') {
-            step{
-                script{
-                    sh 'terraform refresh'
+        stage('Update Ansible Inventory') {
+            steps {
+                script {
+                    sh './update_inventory.sh'
                 }
             }
         }
-
-        stage('Ansible Playbook') {
+        stage('Run Ansible Playbook') {
             steps {
                 script {
-                    // Get public IP of the VM
-                    def ip = sh(script: "terraform output -raw public_ip", returnStdout: true).trim()
-
-                    // Run the Ansible playbook
-                    ansiblePlaybook(
-                        inventory: "all,${ip}",
-                        playbook: 'playbook.yml',
-                        extras: '--ssh-extra-args="-o StrictHostKeyChecking=no"'
-                    )
+                    sh 'ansible-playbook -i inventory playbook.yml'
                 }
             }
         }
