@@ -55,6 +55,7 @@ resource "azurerm_virtual_machine" "main" {
     sku       = "22_04-lts"
     version   = "latest"
   }
+  delete_data_disks_on_termination = "true"
   storage_os_disk {
     name              = "MyOSdisk1"
     caching           = "ReadWrite"
