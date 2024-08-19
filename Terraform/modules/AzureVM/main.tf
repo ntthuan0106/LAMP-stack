@@ -36,12 +36,6 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
-resource "azurerm_ssh_public_key" "az_pub_key" {
-  name                = "pub_keys"
-  resource_group_name = azurerm_resource_group.VM-group.name
-  location            = azurerm_resource_group.VM-group.location
-  public_key          = file("~/.ssh/new_thuan.pub")
-}
 resource "azurerm_virtual_machine" "main" {
   name                  = var.VM-name
   location            = azurerm_resource_group.VM-group.location
