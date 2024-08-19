@@ -70,7 +70,7 @@ resource "azurerm_virtual_machine" "main" {
   os_profile_linux_config {
     disable_password_authentication = false
     ssh_keys {
-      key_data = file("/home/thuan/.ssh/new_thuan.pub")
+      key_data = file("/var/lib/jenkins/.ssh/new_thuan.pub")
       path = "/home/thuan/.ssh/authorized_keys"
     }
   }
