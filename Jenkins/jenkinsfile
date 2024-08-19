@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('1- Checkout') {
             steps {
-                git 'https://github.com/ntthuan0106/LAMP-stack.git'
+                git branch: 'main', url: 'https://github.com/ntthuan0106/LAMP-stack.git'
             }
         }
 
