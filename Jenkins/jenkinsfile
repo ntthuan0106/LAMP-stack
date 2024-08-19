@@ -2,7 +2,10 @@ pipeline {
     agent any
 
     environment {
-        AZURE_CREDENTIALS = credentials('azure-service-principal-id')
+        TF_VAR_subscription_id = credentials('TF_VAR_subscription_id')
+        TF_VAR_client_id       = credentials('TF_VAR_client_id')
+        TF_VAR_client_secret   = credentials('TF_VAR_client_secret')
+        TF_VAR_tenant_id       = credentials('TF_VAR_tenant_id')
     }
 
     stages {
@@ -15,7 +18,10 @@ pipeline {
         stage('2- Terraform Init') {
             steps {
                 script {
-                    sh 'terraform init'
+                    sh '''
+                        cd Terraform
+                        terraform init
+                    '''
                 }
             }
         }
@@ -23,7 +29,10 @@ pipeline {
         stage('3- Terraform Apply') {
             steps {
                 script {
-                    sh 'terraform apply -auto-approve'
+                    sh '''
+                        cd Terraform
+                        terraform apply -auto-approve
+                    '''
                 }
             }
         }
@@ -31,7 +40,10 @@ pipeline {
         stage('4- Terraform refresh') {
             steps {
                 script {
-                    sh 'terraform refresh'
+                    sh '''
+                        cd Terraform
+                        terraform refresh
+                    '''
                 }
             }
         }
