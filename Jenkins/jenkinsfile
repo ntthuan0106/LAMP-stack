@@ -6,13 +6,13 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('1- Checkout') {
             steps {
                 git 'https://github.com/ntthuan0106/LAMP-stack.git'
             }
         }
 
-        stage('Terraform Init') {
+        stage('2- Terraform Init') {
             steps {
                 script {
                     sh 'terraform init'
@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Apply') {
+        stage('3- Terraform Apply') {
             steps {
                 script {
                     sh 'terraform apply -auto-approve'
@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Terraform refresh') {
+        stage('4- Terraform refresh') {
             steps {
                 script {
                     sh 'terraform refresh'
@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Update Ansible Inventory') {
+        stage('5- Update Ansible Inventory') {
             steps {
                 script {
                     // Runs the inventory update script
@@ -44,7 +44,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy with Ansible') {
+        stage('6- Deploy with Ansible') {
             steps {
                 script {
                     // Runs the Ansible playbook
