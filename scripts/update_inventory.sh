@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pwd
 # Define absolute paths
 TF_DIR="Terraform"
 INVENTORY_FILE="Ansible/inventory"
@@ -18,3 +19,4 @@ $PUBLIC_IP ansible_user=$USERNAME ansible_ssh_private_key_file=~/.ssh/new_thuan
 EOL
 
 echo "Inventory file updated with IP: $PUBLIC_IP and username: $USERNAME"
+cat $INVENTORY_FILE
