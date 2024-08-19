@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     // Runs the inventory update script
-                    sh 'bash lamp/scripts/update_inventory.sh'
+                    sh 'bash scripts/update_inventory.sh'
                 }
             }
         }
@@ -48,7 +48,7 @@ pipeline {
             steps {
                 script {
                     // Runs the Ansible playbook
-                    sh 'ansible-playbook -i lamp/Ansible/inventory lamp/Ansible/playbook.yml'
+                    sh 'ansible-playbook -i Ansible/inventory Ansible/playbook.yml'
                 }
             }
         }
