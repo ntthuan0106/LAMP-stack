@@ -10,7 +10,7 @@ cd $TF_DIR
 # Load Terraform outputs
 PUBLIC_IP=$(terraform output -raw vm_public_ip)
 USERNAME=$(terraform output -raw vm_username)
-
+chmod 664 $INVENTORY_FILE
 # Write to the inventory file
 cat > $INVENTORY_FILE <<EOL
 [azure_vm]
