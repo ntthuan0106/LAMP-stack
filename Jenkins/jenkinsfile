@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     // Runs the Ansible playbook
-                    sh 'ansible-playbook -i Ansible/inventory Ansible/playbook.yml -vvvv'
+                    sh 'ansible-playbook -i Ansible/inventory Ansible/playbook.yml --ssh-extra-args="-o StrictHostKeyChecking=no"'
                 }
             }
         }
