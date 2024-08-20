@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define absolute paths
-TF_DIR="/var/lib/jenkins/workspace/test/Terraform"
-INVENTORY_FILE="/var/lib/jenkins/workspace/test/Ansible/inventory"
+TF_DIR="Terraform"
+INVENTORY_FILE="Ansible/inventory"
 
 # Navigate to the Terraform directory
 cd $TF_DIR
