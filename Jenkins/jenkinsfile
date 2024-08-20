@@ -52,7 +52,10 @@ pipeline {
             steps {
                 script {
                     // Runs the inventory update script
-                    sh 'bash scripts/update_inventory.sh'
+                    sh '''
+                        chmod 664 Ansible/inventory
+                        bash scripts/update_inventory.sh
+                    '''
                 }
             }
         }
