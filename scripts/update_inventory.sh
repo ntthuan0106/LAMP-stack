@@ -18,3 +18,4 @@ $PUBLIC_IP ansible_user=$USERNAME ansible_ssh_private_key_file=/var/lib/jenkins/
 EOL
 
 echo "Inventory file updated with IP: $PUBLIC_IP and username: $USERNAME"
+cat $INVENTORY_FILE
